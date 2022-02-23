@@ -1,6 +1,7 @@
 import java.util.*;
 public class StackWithArray
 {
+    {
     static class Stack{
         private int top;
         private int[] dataStore;
@@ -24,7 +25,7 @@ public class StackWithArray
         }
         
         public void push(int data){
-            if(top == capacity-1){
+            if(top < capacity-1){
                 top++;
                 dataStore[top] = data;
                 return;
@@ -52,6 +53,14 @@ public class StackWithArray
             return dataStore[top];
         }
         
+        public void reverse(){
+            for(int i=0;i< dataStore.length/2;i++){
+                int temp =dataStore[i];
+                dataStore[i] = dataStore[dataStore.length-1-i];
+                dataStore[dataStore.length-1-i] = temp;
+            }
+        }
+        
         public boolean isFull(){
             return top == capacity-1;
         }
@@ -69,12 +78,13 @@ public class StackWithArray
 		s.push(2);
 		s.push(3);
 		
-		System.out.println("stack size is: "+s.size() );
-		
-		for(int i=0;i<s.size(); i++ ){
-		    System.out.println(s.pop());
-		}
 		
 		System.out.println(s);
+		
+		s.reverse();
+		
+		System.out.println(s);
+		
+		System.out.println("top element: "+s.peek());
 	}
 }
