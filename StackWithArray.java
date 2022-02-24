@@ -1,8 +1,7 @@
 import java.util.*;
 public class StackWithArray
 {
-    {
-    static class Stack{
+   static class Stack{
         private int top;
         private int[] dataStore;
         private int capacity;
@@ -61,8 +60,52 @@ public class StackWithArray
             }
         }
         
+		public void reverse2() {
+			if (isEmpty()) {
+				return;
+			}
+			int value = pop();
+			reverse2();
+			insertAtBottom(value);
+		}
+
+		public void insertAtBottom(int data) {
+			if (isEmpty()) {
+				push(data);
+			} else {
+				int x = pop();
+				insertAtBottom(data);
+				push(x);
+			}
+		}
+        
         public boolean isFull(){
             return top == capacity-1;
+        }
+        
+        
+        public void sort() {
+        	if(isEmpty()) {
+        		return;
+        	}
+        	int x = pop();
+        	sort();
+        	compareAndPush(x);
+        }
+        private void compareAndPush(int data) {
+        	if(isEmpty()) {
+        		push(data);
+        	}else {
+        		int x = pop();
+        		if(x < data) {
+        			compareAndPush(data);
+        		}else {
+        			push(x);
+        			push(data);
+        			return;
+        		}
+        		push(x);
+        	}
         }
         
         public int size(){
@@ -73,18 +116,29 @@ public class StackWithArray
         }
     }
 	public static void main(String[] args) {
-		Stack s=new Stack(3);
-		s.push(1);
+		Stack s=new Stack(5);
+//		s.push(1);
+//		s.push(2);
+//		s.push(3);
+//		s.push(4);
+//		s.push(5);
+		
 		s.push(2);
+		s.push(4);
+		s.push(6);
+		s.push(1);
 		s.push(3);
+
 		
 		
 		System.out.println(s);
 		
-		s.reverse();
+		//s.reverse();
+		//s.reverse2();
+		s.sort();
 		
 		System.out.println(s);
-		
-		System.out.println("top element: "+s.peek());
+//		
+//		System.out.println("top element: "+s.peek());
 	}
 }
