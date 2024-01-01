@@ -3,21 +3,16 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Recursion {
+public class Main {
     public static void main(String[] args) {
         Main m = new Main();
-        int sum=0;
-        int rem=2;
-        /* System.out.println(m.linearSearch(new int[]{10,70,7,3},700));*/
-       // m.printPattern(4,0);
-        int[] arr=new int[]{5,4,3,1,2};
-
-        //List<String> list= new ArrayList<>();
-       // System.out.println(m.subset(new int[]{1,2,3}));;
-        //System.out.println(list);
-        m.permutation("abc","");
+       m.permutation("abc","");
     }
+    
+
+
     //recursive permutaiton and combination
     public void permutation(String src,String out){
         if(src.isEmpty()){
