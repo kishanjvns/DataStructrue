@@ -10,6 +10,68 @@ public class Main {
         Main m = new Main();
        m.permutation("abc","");
     }
+//
+public void countRopes(int[] ropes){
+        int small = smallestRope(ropes);
+        ropes = reduced(ropes, small);
+
+        long nonZeroCount = contNonZero(ropes);
+        if (nonZeroCount > 0) {
+            System.out.println("New Size after reducing: " + nonZeroCount);
+            countRopes(ropes);
+        } else {
+            System.out.println("No ropes left.");
+        }
+    }
+    public long contNonZero(int[] arr){
+        return Arrays.stream(arr).filter(e-> e >0).count();
+    }
+    public int[] reduced(int[] ropes, int small){
+       int[] newRopesList =  Arrays.stream(ropes).filter(e-> e>0).map(e-> e-small).toArray();
+       return newRopesList;
+    }
+    public int smallestRope(int[] ropes){
+        int min = Arrays.stream(ropes).filter(e-> e>0).distinct().min().getAsInt();
+        return min;
+    }
+    public boolean isPowerOfTwo(int n){
+        if(n == 0){
+            return false;
+        }
+        if(n == 1){
+            return true;
+        }
+        boolean flag = isPowerOfTwo(n/2);
+        int r = n % 2;
+        if(r != 0){
+            flag = false;
+        }
+        return flag;
+    }
+
+    public int sumOfDigits(int number){
+        if(number == 0){
+            return 0;
+        }
+        return number%10 + sumOfDigits(number/10);
+    }
+    public boolean isPalindrome(String src){
+        src=src.replaceAll("[^a-zA-Z0-9]", "");
+        src = src.toLowerCase();
+        System.out.println(src.toLowerCase());
+        return isPalindromeHelper(src.substring(0,src.length()/2), src.substring(src.length()/2));
+    }
+
+    private boolean isPalindromeHelper(String firstHalf, String secondHalf) {
+        if(firstHalf.isEmpty() || secondHalf.isEmpty()){
+            return true;
+        }
+        if(firstHalf.charAt(0)==secondHalf.charAt(secondHalf.length()-1)){
+           return isPalindromeHelper(firstHalf.substring(1),secondHalf.substring(0,secondHalf.length()-1));
+        }
+        return false;
+    }
+//
     
 
 
