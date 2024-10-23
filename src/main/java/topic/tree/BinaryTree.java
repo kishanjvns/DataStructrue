@@ -1,15 +1,16 @@
 package topic.tree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Tree<T> {
+public class BinaryTree<T> {
     private Node<T> root;
 
-    public Tree(Node<T> root) {
+    public BinaryTree(Node<T> root) {
         this.root = root;
+    }
+    public BinaryTree() {
     }
 
     public Node<T> getRoot() {
@@ -66,32 +67,35 @@ public class Tree<T> {
         System.out.println("enter the root value ");
         int rootVal = sc.nextInt();
         Node<Integer> root = new Node<>(rootVal);
-        Tree<Integer> tree = new Tree<>(root);
+        BinaryTree<Integer> tree = new BinaryTree<>(root);
 
         Queue<Node<Integer>> queue = new LinkedList<>();
         queue.add(root);
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Node<Integer> current = queue.poll();
-            System.out.println("Enter the left child of "+current.value);
+            System.out.println("Enter the left child of " + current.value);
             int leftChildVal = sc.nextInt();
-            if(leftChildVal != -1){
+            if (leftChildVal != -1) {
                 current.setLeftChild(new Node<>(leftChildVal));
                 queue.add(current.leftChild);
             }
 
-            System.out.println("Enter the right child of "+current.value);
+            System.out.println("Enter the right child of " + current.value);
             int rightChildVal = sc.nextInt();
-            if(rightChildVal != -1){
+            if (rightChildVal != -1) {
                 current.setRightChild(new Node<>(rightChildVal));
                 queue.add(current.rightChild);
             }
 
         }
         //System.out.println(tree);
-        print(root,0);
+        print(root, 0);
     }
-    public static  <T> void  print(Node<T> root,int level){
-        if(root == null){
+
+
+
+    public static <T> void print(Node<T> root, int level) {
+        if (root == null) {
             return;
         }
         for (int i = 0; i < level; i++) {
@@ -103,6 +107,8 @@ public class Tree<T> {
     }
 
     public static void main(String[] args) {
+        BinaryTree<Integer> bt= new BinaryTree<>();
         initTree();
+
     }
 }
