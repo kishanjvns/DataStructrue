@@ -357,7 +357,6 @@ public class BinaryTree4<T> {
                     queue.add(temp.rightChild);
                 }
                 qLength--;
-
             }
             level++;
         }
